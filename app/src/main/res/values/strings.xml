@@ -36,4 +36,5 @@
     </string>
     <string name="email">e-pošta</string>
     <string name="password">lozinka</string>
+    <string name="login">login</string>
 </resources>

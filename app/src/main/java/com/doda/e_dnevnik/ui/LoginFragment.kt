@@ -1,4 +1,4 @@
-package com.doda.e_dnevnik
+package com.doda.e_dnevnik.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentLoginBinding
 import com.doda.e_dnevnik.login.LoginViewModel

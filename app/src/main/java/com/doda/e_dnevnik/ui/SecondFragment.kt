@@ -1,4 +1,4 @@
-package com.doda.e_dnevnik
+package com.doda.e_dnevnik.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

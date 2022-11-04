@@ -16,7 +16,7 @@ interface EdnevnikApiService {
     //    @GET("/login")
     //    fun login (@Body request: LoginRequest): Call<LoginResponse>
 
-    @HTTP(method = "get", path = "/login", hasBody = true)
+    @HTTP(method = "get", path = "/api/login", hasBody = true)
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
 }

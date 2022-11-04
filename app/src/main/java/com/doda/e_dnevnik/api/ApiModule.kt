@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 
 object ApiModule {
 
-    private const val BASE_URL = "https://ocjene.eduo.help/api/"
+    private const val BASE_URL = "https://ocjene.eduo.help/"
 
     lateinit var retrofit: EdnevnikApiService
 

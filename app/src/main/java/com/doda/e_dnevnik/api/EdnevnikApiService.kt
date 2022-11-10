@@ -10,13 +10,15 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HTTP
+import retrofit2.http.POST
 
 interface EdnevnikApiService {
 
-    //    @GET("/login")
-    //    fun login (@Body request: LoginRequest): Call<LoginResponse>
-
-    @HTTP(method = "get", path = "/api/login", hasBody = true)
+    @POST("/api/login")
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
 }
+
+
+
+

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentLoginBinding
 import com.doda.e_dnevnik.login.LoginViewModel
+import com.doda.e_dnevnik.preferences.MyPreferences
 
 class LoginFragment : Fragment() {
 
@@ -20,6 +21,8 @@ class LoginFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var sharedPreferences: MyPreferences
+
     private val viewModel: LoginViewModel by viewModels()
 
     private var email = ""
@@ -28,7 +31,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,15 +40,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ApiModule.initRetrofit()
+        sharedPreferences = MyPreferences(requireContext())
+
+        ApiModule.initRetrofit(sharedPreferences)
         initEmailListener()
         initPasswordListener()
         initLoginLiveDataObserver()
         initOnLoginBtnClickedListener()
 
-        //        binding.buttonFirst.setOnClickListener {
-        //            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        //        }
     }
 
     override fun onDestroyView() {
@@ -69,7 +71,7 @@ class LoginFragment : Fragment() {
 
     private fun initOnLoginBtnClickedListener() {
         binding.loginBtn.setOnClickListener {
-            viewModel.onLoginButtonClicked(email, password)
+            viewModel.onLoginButtonClicked(email, password, sharedPreferences)
         }
     }
 

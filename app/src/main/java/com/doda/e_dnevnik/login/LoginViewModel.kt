@@ -23,7 +23,7 @@ class LoginViewModel : ViewModel() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 loginResultLiveData.value = response.isSuccessful
                 val body = response.body()
-                if (body != null)
+                if (body != null && response.isSuccessful)
                     sharedPreferences.putToken(body.token)
             }
 

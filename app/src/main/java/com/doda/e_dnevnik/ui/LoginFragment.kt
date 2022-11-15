@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentLoginBinding
 import com.doda.e_dnevnik.login.LoginViewModel
@@ -78,7 +79,8 @@ class LoginFragment : Fragment() {
     private fun initLoginLiveDataObserver() {
         viewModel.getLoginResultLiveData().observe(viewLifecycleOwner) { isSuccessful ->
             if (isSuccessful) {
-                Toast.makeText(requireContext(), "RESI LOGIN BATO", Toast.LENGTH_SHORT).show()
+                val directions = LoginFragmentDirections.actionLoginFragmentToRazredFragment()
+                findNavController().navigate(directions)
             } else {
                 Toast.makeText(requireContext(), "wronk", Toast.LENGTH_SHORT).show()
             }

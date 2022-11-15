@@ -8,6 +8,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 const val TOKEN = "TOKEN"
 const val EDUOTOKEN = "eduoToken"
@@ -37,6 +38,7 @@ object ApiModule {
 class AuthInterceptor (private val sharedPreferences: MyPreferences) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val token = sharedPreferences.getToken()
+        token
 
         var request = chain.request()
         request = request.newBuilder()

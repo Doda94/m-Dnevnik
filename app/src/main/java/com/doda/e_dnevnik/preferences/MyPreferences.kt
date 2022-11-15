@@ -20,8 +20,8 @@ class MyPreferences(
         }
     }
 
-    fun getToken() {
-        sharedPreferences.getString(TOKEN, null)
+    fun getToken(): String? {
+        return sharedPreferences.getString(TOKEN, null)
     }
 
 }

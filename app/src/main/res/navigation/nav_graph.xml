@@ -10,7 +10,8 @@
         android:name="com.doda.e_dnevnik.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
-        <action android:id="@+id/action_loginFragment_to_razredFragment" app:destination="@id/razredFragment"/>
+        <action android:id="@+id/action_loginFragment_to_razredFragment"
+            app:destination="@id/razredFragment"/>
     </fragment>
     <fragment
         android:id="@+id/razredFragment"

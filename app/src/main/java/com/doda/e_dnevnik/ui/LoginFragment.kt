@@ -79,7 +79,7 @@ class LoginFragment : Fragment() {
     private fun initLoginLiveDataObserver() {
         viewModel.getLoginResultLiveData().observe(viewLifecycleOwner) { isSuccessful ->
             if (isSuccessful) {
-                val directions = LoginFragmentDirections.actionLoginFragmentToRazredFragment()
+                val directions = LoginFragmentDirections.actionLoginFragmentToDataFragment()
                 findNavController().navigate(directions)
             } else {
                 Toast.makeText(requireContext(), "wronk", Toast.LENGTH_SHORT).show()

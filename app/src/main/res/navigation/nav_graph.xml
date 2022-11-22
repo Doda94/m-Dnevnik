@@ -10,12 +10,12 @@
         android:name="com.doda.e_dnevnik.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
-        <action android:id="@+id/action_loginFragment_to_razredFragment"
-            app:destination="@id/razredFragment"/>
+        <action android:id="@+id/action_loginFragment_to_dataFragment"
+            app:destination="@id/dataFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/razredFragment"
-        android:name="com.doda.e_dnevnik.ui.RazredFragment"
-        android:label="fragment_razred"
-        tools:layout="@layout/fragment_razred"/>
+        android:id="@+id/dataFragment"
+        android:name="com.doda.e_dnevnik.data.DataFragment"
+        android:label="fragment_data"
+        tools:layout="@layout/fragment_data"/>
 </navigation>

@@ -33,4 +33,5 @@
     <string name="email">e-pošta</string>
     <string name="password">lozinka</string>
     <string name="login">login</string>
+    <string name="choose">IZABERI RAZRED:</string>
 </resources>

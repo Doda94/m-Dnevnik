@@ -7,13 +7,15 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:clickable="true"
         android:focusable="true"
-        android:checkable="true"
-        app:cardCornerRadius="8dp">
+        android:checkable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,10 +40,6 @@
                 android:paddingBottom="24dp"
                 android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
                 tools:text="21./22."/>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -34,4 +34,5 @@
     <string name="password">lozinka</string>
     <string name="login">login</string>
     <string name="choose">Izaberi razred:</string>
+    <string name="error">Dogodila se pogreska.</string>
 </resources>

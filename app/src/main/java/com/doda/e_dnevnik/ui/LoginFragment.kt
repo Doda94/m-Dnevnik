@@ -1,18 +1,19 @@
 package com.doda.e_dnevnik.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.doda.e_dnevnik.R
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentLoginBinding
 import com.doda.e_dnevnik.login.LoginViewModel
 import com.doda.e_dnevnik.preferences.MyPreferences
+import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment() {
 
@@ -82,7 +83,8 @@ class LoginFragment : Fragment() {
                 val directions = LoginFragmentDirections.actionLoginFragmentToDataFragment()
                 findNavController().navigate(directions)
             } else {
-                Toast.makeText(requireContext(), "wronk", Toast.LENGTH_SHORT).show()
+                // TODO: add different snackbars for wrong credentials and for server errors
+                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG).show()
             }
         }
     }

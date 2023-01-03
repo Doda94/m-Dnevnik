@@ -42,14 +42,10 @@ class DataFragment : Fragment() {
             razredi = items
             initRazrediRecycler()
         }
-
-//        initRazrediRecycler()
         sharedPreferences = MyPreferences(requireContext())
 
         ApiModule.initRetrofit(sharedPreferences)
         viewModel.loadRazrede()
-
-//        initRazrediRecycler()
     }
 
     override fun onDestroyView() {

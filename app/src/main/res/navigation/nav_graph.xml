@@ -17,5 +17,18 @@
         android:id="@+id/dataFragment"
         android:name="com.doda.e_dnevnik.data.DataFragment"
         android:label="fragment_data"
-        tools:layout="@layout/fragment_data"/>
+        tools:layout="@layout/fragment_data">
+        <action
+            android:id="@+id/action_dataFragment_to_razrediFragment"
+            app:destination="@id/razrediFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/razrediFragment"
+        android:name="com.doda.e_dnevnik.razredi.RazrediFragment"
+        android:label="fragment_razredi"
+        tools:layout="@layout/fragment_razredi">
+        <argument
+            android:name="id"
+            app:argType="string"/>
+    </fragment>
 </navigation>

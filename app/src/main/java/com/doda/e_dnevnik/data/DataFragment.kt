@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentDataBinding
@@ -54,8 +55,9 @@ class DataFragment : Fragment() {
     }
 
     private fun initRazrediRecycler(){
-            adapter = DataAdapter(razredi) { _ ->
-
+            adapter = DataAdapter(razredi) { razred ->
+                val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id)
+                findNavController().navigate(directions)
             }
             binding.razrediRecyclerView.layoutManager = LinearLayoutManager(activity)
 

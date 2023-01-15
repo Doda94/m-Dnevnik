@@ -25,10 +25,13 @@ class DataAdapter(
         fun bind(item: Razred) {
             binding.razredTitle.text = item.name
             binding.razredGen.text = item.gen
+            binding.razredCard.setOnClickListener { onItemClickCallback(item) }
         }
+
+
     }
 
-    fun loadRazrede(items: Array<Razred>){
+    fun loadRazrede(items: Array<Razred>) {
         razredi = items
         notifyDataSetChanged()
     }

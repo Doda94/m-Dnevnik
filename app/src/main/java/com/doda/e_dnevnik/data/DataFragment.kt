@@ -53,7 +53,7 @@ class DataFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    
     private fun initRazrediRecycler(){
             adapter = DataAdapter(razredi) { razred ->
                 val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id)

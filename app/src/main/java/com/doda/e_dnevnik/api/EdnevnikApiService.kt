@@ -1,5 +1,6 @@
 package com.doda.e_dnevnik.api
 
+import com.doda.e_dnevnik.OcjeneResponse
 import com.doda.e_dnevnik.data.DataResponse
 import com.doda.e_dnevnik.login.LoginRequest
 import com.doda.e_dnevnik.login.LoginResponse
@@ -20,6 +21,9 @@ interface EdnevnikApiService {
 
     @GET("https://ocjene.eduo.help/api/scrape/class/{classID}")
     fun predmeti(@Path("classID") classID: String): Call<PredmetiResponse>
+
+    @GET("https://ocjene.eduo.help/api/scrape/subject/{subjectID}")
+    fun ocjene(@Path("subjectID") subjectID: String): Call<OcjeneResponse>
 
 }
 

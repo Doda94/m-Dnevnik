@@ -5,20 +5,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.doda.e_dnevnik.Ocjena
 
 @Dao
 interface DnevnikDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRazred(razred: RazredEntity)
+    fun insertPredmeti(predmeti: PredmetEntity)
 
-    @Query("SELECT * FROM razredi where id is :id")
-    fun getRazred(id: String): RazredEntity
+    @Query("UPDATE predmeti SET prosjek = :prosjek WHERE predmetId IS :predmetId")
+    fun updatePredmeti(predmetId: String, prosjek: Double)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOcjene(ocjene: OcjeneEntity)
+    @Query("SELECT * FROM predmeti")
+    fun getAllPredmeti(): List<PredmetEntity>
 
-    @Query("SELECT * FROM ocjene")
-    fun getOcjene(): List<OcjeneEntity>
-
+    @Query("UPDATE predmeti SET ocjene = :ocjene WHERE predmetId IS :predmetId")
+    fun updateOcjene(predmetId: String, ocjene: List<Ocjena>?)
 }

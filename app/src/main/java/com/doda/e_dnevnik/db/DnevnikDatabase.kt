@@ -9,10 +9,9 @@ import com.doda.e_dnevnik.OcjeneResponse
 
 @Database(
     entities = [
-        RazredEntity::class,
-        OcjeneEntity::class
+        PredmetEntity::class,
     ],
-    version = 2
+    version = 1
 )
 @TypeConverters(Converters::class)
 abstract class DnevnikDatabase: RoomDatabase() {

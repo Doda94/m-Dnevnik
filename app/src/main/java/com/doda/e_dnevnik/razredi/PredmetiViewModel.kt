@@ -2,13 +2,10 @@ package com.doda.e_dnevnik.razredi
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.doda.e_dnevnik.Ocjena
 import com.doda.e_dnevnik.OcjeneResponse
 import com.doda.e_dnevnik.api.ApiModule
-import com.doda.e_dnevnik.data.Razred
 import com.doda.e_dnevnik.db.DnevnikDatabase
-import com.doda.e_dnevnik.db.OcjeneEntity
-import com.doda.e_dnevnik.db.RazredEntity
+import com.doda.e_dnevnik.db.PredmetEntity
 import java.util.concurrent.Executors
 
 class PredmetiViewModel(
@@ -21,25 +18,19 @@ class PredmetiViewModel(
 
     private var predmeti: List<Predmet> = listOf()
 
-    fun updateDbLiveData(classId: String) {
-        _predmetiLiveData.value = database.dnevnikDAO().getRazred(classId).predmeti
+    fun clearDB() {
+        Executors.newSingleThreadExecutor().execute {
+            database.clearAllTables()
+        }
     }
 
-    fun loadPredmete(classId: String, razred: String) {
+    fun loadPredmete(classId: String) {
         ApiModule.retrofit.predmeti(classId).enqueue(object : retrofit2.Callback<PredmetiResponse> {
             override fun onResponse(call: retrofit2.Call<PredmetiResponse>, response: retrofit2.Response<PredmetiResponse>) {
                 predmeti = response.body()?.data!!
-                var predmetiZaDb: List<PredmetEntity> = listOf()
                 for (predmet in predmeti) {
                     val ocjene = getOcjene(predmet)
-                    var zbrojOcjena = 0
-                    for (ocjena in ocjene.data!!) {
-                        zbrojOcjena += ocjena.grade.toInt()
-                    }
-                    var prosjek: Double? = null
-                    if (ocjene.data.isNotEmpty()) {
-                        prosjek = zbrojOcjena / ocjene.data.size.toDouble()
-                    }
+                    var prosjek: Double = 0.0
                     val currentPredmet: PredmetEntity = PredmetEntity(
                         predmet.subjectID,
                         predmet,
@@ -49,10 +40,12 @@ class PredmetiViewModel(
                         ocjene.data,
                         prosjek,
                     )
-                    predmetiZaDb += currentPredmet
+                    Executors.newSingleThreadExecutor().execute {
+                        database.dnevnikDAO().insertPredmeti(currentPredmet)
+                    }
                 }
                 Executors.newSingleThreadExecutor().execute {
-                    database.dnevnikDAO().insertRazred(RazredEntity(classId, razred, predmetiZaDb, listOf()))
+                    _predmetiLiveData.postValue(database.dnevnikDAO().getAllPredmeti())
                 }
             }
 
@@ -71,7 +64,7 @@ class PredmetiViewModel(
                 var brocjena = 0
                 if (ocjene.data != null) {
                     for (ocjena in ocjene.data!!) {
-                        if (ocjena.grade != ""){
+                        if (ocjena.grade != "") {
                             prosjek += ocjena.grade.toDouble()
                             brocjena++
                         }
@@ -79,8 +72,9 @@ class PredmetiViewModel(
                     prosjek /= brocjena.toDouble()
                 }
                 Executors.newSingleThreadExecutor().execute {
-//                    database.dnevnikDAO().updateProsjek(prosjek, predmet.subject)
-//                    updateDbLiveData(predmet.subjectID)
+                    database.dnevnikDAO().updatePredmeti(predmet.subjectID, prosjek)
+                    database.dnevnikDAO().updateOcjene(predmet.subjectID, ocjene.data)
+                    _predmetiLiveData.postValue(database.dnevnikDAO().getAllPredmeti())
                 }
             }
 

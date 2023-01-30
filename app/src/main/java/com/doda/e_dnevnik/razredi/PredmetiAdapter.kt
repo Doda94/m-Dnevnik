@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.doda.e_dnevnik.databinding.ViewItemPredmetBinding
 import com.doda.e_dnevnik.db.OcjeneEntity
+import com.doda.e_dnevnik.db.PredmetEntity
 
 class PredmetiAdapter(
     private var predmeti: List<PredmetEntity>,
-    private var ocjene: List<OcjeneEntity>,
     private var onItemClickCallback: (PredmetEntity) -> Unit
 ) : RecyclerView.Adapter<PredmetiAdapter.PredmetiViewHolder>
 () {
@@ -19,23 +19,22 @@ class PredmetiAdapter(
     }
 
     override fun onBindViewHolder(holder: PredmetiViewHolder, position: Int) {
-        holder.bind(predmeti[position], ocjene[position])
+        holder.bind(predmeti[position])
     }
 
     override fun getItemCount(): Int = predmeti.size
 
     inner class PredmetiViewHolder(private val binding: ViewItemPredmetBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PredmetEntity, itemProsjek: OcjeneEntity) {
+        fun bind(item: PredmetEntity) {
             binding.predmetTitle.text = item.predmet.subject
             binding.predmetTeacher.text = item.predmet.teachersName
-            binding.predmetAverage.text = itemProsjek.prosjek
+            binding.predmetAverage.text = item.prosjek.toString()
             binding.predmetCard.setOnClickListener { onItemClickCallback(item) }
         }
     }
 
     fun update(items: List<PredmetEntity>, ocjeneItems: List<OcjeneEntity>) {
         predmeti = items
-        ocjene = ocjeneItems
         notifyDataSetChanged()
     }
 }

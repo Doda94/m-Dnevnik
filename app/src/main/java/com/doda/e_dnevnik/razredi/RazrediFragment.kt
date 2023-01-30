@@ -12,6 +12,7 @@ import com.doda.e_dnevnik.EdnevnikApplication
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentRazrediBinding
 import com.doda.e_dnevnik.db.OcjeneEntity
+import com.doda.e_dnevnik.db.PredmetEntity
 import com.doda.e_dnevnik.preferences.MyPreferences
 
 class RazrediFragment : Fragment() {
@@ -44,16 +45,16 @@ class RazrediFragment : Fragment() {
         predmeti = emptyList()
         ocjene = emptyList()
 
+        val database = (activity?.application as EdnevnikApplication).database
+
         val viewModel: PredmetiViewModel by viewModels{
             PredmetiViewModelFactory((activity?.application as EdnevnikApplication).database)
         }
 
-        val database = (activity?.application as EdnevnikApplication).database
-
         sharedPreferences = MyPreferences(requireContext())
 
         ApiModule.initRetrofit(sharedPreferences)
-        viewModel.loadPredmete(args.id, args.razred)
+        viewModel.loadPredmete(args.id)
 
         viewModel.predmetiLiveData.observe(viewLifecycleOwner) {
             predmeti = it
@@ -68,7 +69,7 @@ class RazrediFragment : Fragment() {
     }
 
     private fun initPredmetiRecycler() {
-        adapter = PredmetiAdapter(predmeti, ocjene) { predmet ->
+        adapter = PredmetiAdapter(predmeti) { predmet ->
 //            TODO: finish this
         }
         binding.ocjeneRecyclerView.layoutManager = LinearLayoutManager(activity)

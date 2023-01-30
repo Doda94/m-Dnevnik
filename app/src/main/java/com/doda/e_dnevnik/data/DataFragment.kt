@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.doda.e_dnevnik.EdnevnikApplication
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentDataBinding
 import com.doda.e_dnevnik.preferences.MyPreferences
+import java.util.concurrent.Executors
 
 class DataFragment : Fragment() {
 
@@ -39,6 +41,13 @@ class DataFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val database = (activity?.application as EdnevnikApplication).database
+
+        Executors.newSingleThreadExecutor().execute {
+            database.clearAllTables()
+        }
+
         viewModel.razrediLiveData.observe(viewLifecycleOwner) { items ->
             razredi = items
             initRazrediRecycler()

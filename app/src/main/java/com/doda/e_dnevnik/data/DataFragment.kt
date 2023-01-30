@@ -56,7 +56,7 @@ class DataFragment : Fragment() {
     
     private fun initRazrediRecycler(){
             adapter = DataAdapter(razredi) { razred ->
-                val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id)
+                val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id, razred.name)
                 findNavController().navigate(directions)
             }
             binding.razrediRecyclerView.layoutManager = LinearLayoutManager(activity)

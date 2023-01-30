@@ -19,10 +19,10 @@ interface EdnevnikApiService {
     @GET("/api/scrape/userInfo")
     fun razredi(): Call<DataResponse>
 
-    @GET("https://ocjene.eduo.help/api/scrape/class/{classID}")
+    @GET("https://eduo-ocjene.fly.dev/api/scrape/class/{classID}")
     fun predmeti(@Path("classID") classID: String): Call<PredmetiResponse>
 
-    @GET("https://ocjene.eduo.help/api/scrape/subject/{subjectID}")
+    @GET("https://eduo-ocjene.fly.dev/api/scrape/subject/{subjectID}")
     fun ocjene(@Path("subjectID") subjectID: String): Call<OcjeneResponse>
 
 }

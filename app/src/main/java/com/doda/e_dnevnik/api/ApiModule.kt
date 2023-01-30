@@ -15,7 +15,7 @@ const val EDUOTOKEN = "eduoToken"
 
 object ApiModule {
 
-    private const val BASE_URL = "https://ocjene.eduo.help/"
+    private const val BASE_URL = "https://eduo-ocjene.fly.dev/"
 
     lateinit var retrofit: EdnevnikApiService
 

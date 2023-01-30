@@ -30,5 +30,8 @@
         <argument
             android:name="id"
             app:argType="string"/>
+        <argument
+            android:name="razred"
+            app:argType="string"/>
     </fragment>
 </navigation>

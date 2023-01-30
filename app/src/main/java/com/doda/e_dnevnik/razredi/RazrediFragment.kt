@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.doda.e_dnevnik.EdnevnikApplication
 import com.doda.e_dnevnik.api.ApiModule
 import com.doda.e_dnevnik.databinding.FragmentRazrediBinding
+import com.doda.e_dnevnik.db.OcjeneEntity
 import com.doda.e_dnevnik.preferences.MyPreferences
 
 class RazrediFragment : Fragment() {
@@ -18,13 +20,13 @@ class RazrediFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: PredmetiViewModel by viewModels()
-
     private lateinit var sharedPreferences: MyPreferences
 
     private lateinit var adapter: PredmetiAdapter
 
-    private lateinit var predmeti: List<Predmet>
+    private lateinit var predmeti: List<PredmetEntity>
+
+    private lateinit var ocjene: List<OcjeneEntity>
 
     private val args by navArgs<RazrediFragmentArgs>()
 
@@ -39,14 +41,25 @@ class RazrediFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.predmetiLiveData.observe(viewLifecycleOwner) { items ->
-            predmeti = items
-            initPredmetiRecycler()
+        predmeti = emptyList()
+        ocjene = emptyList()
+
+        val viewModel: PredmetiViewModel by viewModels{
+            PredmetiViewModelFactory((activity?.application as EdnevnikApplication).database)
         }
+
+        val database = (activity?.application as EdnevnikApplication).database
+
         sharedPreferences = MyPreferences(requireContext())
 
         ApiModule.initRetrofit(sharedPreferences)
-        viewModel.loadPredmete(args.id)
+        viewModel.loadPredmete(args.id, args.razred)
+
+        viewModel.predmetiLiveData.observe(viewLifecycleOwner) {
+            predmeti = it
+            initPredmetiRecycler()
+        }
+
     }
 
     override fun onDestroyView() {
@@ -55,7 +68,7 @@ class RazrediFragment : Fragment() {
     }
 
     private fun initPredmetiRecycler() {
-        adapter = PredmetiAdapter(predmeti) { predmet ->
+        adapter = PredmetiAdapter(predmeti, ocjene) { predmet ->
 //            TODO: finish this
         }
         binding.ocjeneRecyclerView.layoutManager = LinearLayoutManager(activity)

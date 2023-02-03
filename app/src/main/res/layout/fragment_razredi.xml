@@ -38,8 +38,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-<!--    TODO: check if this works properly-->
+    <!--    TODO: check if this works properly-->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:menu="@menu/bottom_navigation_menu"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

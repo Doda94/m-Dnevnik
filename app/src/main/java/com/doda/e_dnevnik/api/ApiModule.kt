@@ -38,8 +38,6 @@ object ApiModule {
 class AuthInterceptor (private val sharedPreferences: MyPreferences) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val token = sharedPreferences.getToken()
-        token
-
         var request = chain.request()
         request = request.newBuilder()
             .header(EDUOTOKEN, token.toString())

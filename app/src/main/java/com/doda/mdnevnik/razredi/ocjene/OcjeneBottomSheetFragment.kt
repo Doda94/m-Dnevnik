@@ -1,12 +1,14 @@
-package com.doda.mdnevnik.razredi
+package com.doda.mdnevnik.razredi.ocjene
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.doda.mdnevnik.MdnevnikApplication
-import com.doda.mdnevnik.Ocjena
 import com.doda.mdnevnik.databinding.FragmentOcjeneBottomSheetBinding
+import com.doda.mdnevnik.razredi.Rubrika
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
@@ -15,7 +17,9 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val binding get() = _binding!!
 
-    val ocjene: List<Ocjena> = listOf()
+    val rubrike: List<Rubrika> = listOf()
+
+    private val args by navArgs<OcjeneBottomSheetFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +32,15 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val database = (activity?.application as MdnevnikApplication).database
+        val viewModel: OcjeneBottomSheetViewModel by viewModels {
+            OcjeneBottomSheetViewModelFactory((activity?.application as MdnevnikApplication).database)
+        }
+
+        viewModel.loadOcjene(args.id)
+
+        viewModel.ocjeneLiveData.observe(viewLifecycleOwner){
+            it
+        }
 
     }
 

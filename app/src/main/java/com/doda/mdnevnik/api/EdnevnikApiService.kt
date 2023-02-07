@@ -1,10 +1,12 @@
 package com.doda.mdnevnik.api
 
 import com.doda.mdnevnik.OcjeneResponse
+import com.doda.mdnevnik.biljeske.BiljeskeResponse
 import com.doda.mdnevnik.data.DataResponse
 import com.doda.mdnevnik.login.LoginRequest
 import com.doda.mdnevnik.login.LoginResponse
 import com.doda.mdnevnik.razredi.PredmetiResponse
+import com.doda.mdnevnik.vladanje.VladanjeResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -19,11 +21,17 @@ interface EdnevnikApiService {
     @GET("/api/scrape/userInfo")
     fun razredi(): Call<DataResponse>
 
-    @GET("https://eduo-ocjene.fly.dev/api/scrape/class/{classID}")
+    @GET("/api/scrape/class/{classID}")
     fun predmeti(@Path("classID") classID: String): Call<PredmetiResponse>
 
-    @GET("https://eduo-ocjene.fly.dev/api/scrape/subject/{subjectID}")
+    @GET("/api/scrape/subject/{subjectID}")
     fun ocjene(@Path("subjectID") subjectID: String): Call<OcjeneResponse>
+
+    @GET("/api/scrape/notes/{classID}")
+    fun biljeske(@Path("classID") classID: String): Call<BiljeskeResponse>
+
+    @GET("/api/scrape/behavior/{classID}")
+    fun vladanje(@Path("classID") classID: String): Call<VladanjeResponse>
 
 }
 

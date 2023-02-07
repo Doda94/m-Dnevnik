@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -67,6 +68,8 @@ class RazrediFragment : Fragment() {
         viewModel.numberOfProsjekLiveData.observe(viewLifecycleOwner) {
             if (it == predmeti.size && it != 0) {
                 hideProgressIndicator()
+                viewModel.loadBiljeske(args.id)
+                viewModel.loadVladanje(args.id)
             }
         }
 
@@ -79,7 +82,8 @@ class RazrediFragment : Fragment() {
 
     private fun initPredmetiRecycler() {
         adapter = PredmetiAdapter(predmeti) { predmet ->
-            //            TODO: finish this
+            val directions = RazrediFragmentDirections.actionRazrediFragmentToOcjeneBottomSheetFragment(predmet.predmetId)
+            findNavController().navigate(directions)
         }
         binding.ocjeneRecyclerView.layoutManager = LinearLayoutManager(activity)
 
@@ -105,9 +109,13 @@ class RazrediFragment : Fragment() {
                     true
                 }
                 R.id.biljeske_item -> {
+                    val directions = RazrediFragmentDirections.actionRazrediFragmentToBiljeskeFragment()
+                    findNavController().navigate(directions)
                     true
                 }
                 R.id.ponasanje_item -> {
+                    val directions = RazrediFragmentDirections.actionRazrediFragmentToVladanjeFragment()
+                    findNavController().navigate(directions)
                     true
                 }
                 else -> false

@@ -8,6 +8,7 @@
     android:layout_marginTop="12dp">
 
     <TextView
+        android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,17 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.CardView.Filled"
+        android:layout_marginTop="6dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp">
 
         <TextView
+            android:id="@+id/data_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Damir Rister damir.rister@skole.hr, damir.rister.fizika@gmail.com"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             />
 
     </com.google.android.material.card.MaterialCardView>

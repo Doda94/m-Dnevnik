@@ -9,13 +9,15 @@ import androidx.room.TypeConverters
 @Database(
     entities = [
         PredmetEntity::class,
+        BiljeskaEntity::class,
+        VladanjeEntity::class
     ],
-    version = 1
+    version = 1,
 )
 @TypeConverters(Converters::class)
-abstract class DnevnikDatabase: RoomDatabase() {
+abstract class DnevnikDatabase : RoomDatabase() {
 
-    companion object{
+    companion object {
 
         private var INSTANCE: DnevnikDatabase? = null
 

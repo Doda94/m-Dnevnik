@@ -35,9 +35,28 @@
             app:argType="string"/>
         <action android:id="@+id/action_razrediFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
         <action android:id="@+id/action_razrediFragment_to_ocjeneBottomSheetFragment" app:destination="@id/ocjeneBottomSheetFragment"/>
+        <action android:id="@+id/action_razrediFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"/>
+        <action android:id="@+id/action_razrediFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"/>
     </fragment>
-    <fragment android:id="@+id/ispitiFragment" android:name="com.doda.mdnevnik.ispiti.IspitiFragment" android:label="fragment_ispiti"
+    <fragment android:id="@+id/ispitiFragment"
+        android:name="com.doda.mdnevnik.ispiti.IspitiFragment"
+        android:label="fragment_ispiti"
         tools:layout="@layout/fragment_ispiti"/>
-    <dialog android:id="@+id/ocjeneBottomSheetFragment" android:name="com.doda.mdnevnik.razredi.OcjeneBottomSheetFragment"
-        android:label="fragment_ocjene_bottom_sheet" tools:layout="@layout/fragment_ocjene_bottom_sheet"/>
+
+    <dialog
+        android:id="@+id/ocjeneBottomSheetFragment"
+        android:name="com.doda.mdnevnik.razredi.ocjene.OcjeneBottomSheetFragment"
+        android:label="fragment_ocjene_bottom_sheet"
+        tools:layout="@layout/fragment_ocjene_bottom_sheet">
+        <argument android:name="id" app:argType="string"/>
+    </dialog>
+    <fragment
+        android:id="@+id/biljeskeFragment"
+        android:name="com.doda.mdnevnik.biljeske.BiljeskeFragment"
+        android:label="fragment_biljeske"
+        tools:layout="@layout/fragment_biljeske"/>
+    <fragment
+        android:id="@+id/vladanjeFragment"
+        android:name="com.doda.mdnevnik.vladanje.VladanjeFragment"
+        android:label="VladanjeFragment"/>
 </navigation>

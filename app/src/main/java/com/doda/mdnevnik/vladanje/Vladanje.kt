@@ -1,11 +1,9 @@
-package com.doda.mdnevnik
+package com.doda.mdnevnik.vladanje
 
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
-data class Biljeska(
+data class Vladanje(
     @SerialName("title") val title: String,
     @SerialName("dataText") val dataText: String,
-    // TODO check linksData type
-//    @SerialName("linksData") val linksData: List<String>,
 )

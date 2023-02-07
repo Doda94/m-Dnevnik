@@ -73,6 +73,9 @@ class LoginFragment : Fragment() {
 
     private fun initOnLoginBtnClickedListener() {
         binding.loginBtn.setOnClickListener {
+            if (!email.contains("@")){
+                email+= "@skole.hr"
+            }
             viewModel.onLoginButtonClicked(email, password, sharedPreferences)
         }
     }

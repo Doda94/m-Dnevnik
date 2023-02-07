@@ -7,7 +7,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.doda.e_dnevnik.ui.LoginFragment"
+        android:name="com.doda.mdnevnik.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action android:id="@+id/action_loginFragment_to_dataFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/dataFragment"
-        android:name="com.doda.e_dnevnik.data.DataFragment"
+        android:name="com.doda.mdnevnik.data.DataFragment"
         android:label="fragment_data"
         tools:layout="@layout/fragment_data">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/razrediFragment"
-        android:name="com.doda.e_dnevnik.razredi.RazrediFragment"
+        android:name="com.doda.mdnevnik.razredi.RazrediFragment"
         android:label="fragment_razredi"
         tools:layout="@layout/fragment_razredi">
         <argument
@@ -33,5 +33,11 @@
         <argument
             android:name="razred"
             app:argType="string"/>
+        <action android:id="@+id/action_razrediFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
+        <action android:id="@+id/action_razrediFragment_to_ocjeneBottomSheetFragment" app:destination="@id/ocjeneBottomSheetFragment"/>
     </fragment>
+    <fragment android:id="@+id/ispitiFragment" android:name="com.doda.mdnevnik.ispiti.IspitiFragment" android:label="fragment_ispiti"
+        tools:layout="@layout/fragment_ispiti"/>
+    <dialog android:id="@+id/ocjeneBottomSheetFragment" android:name="com.doda.mdnevnik.razredi.OcjeneBottomSheetFragment"
+        android:label="fragment_ocjene_bottom_sheet" tools:layout="@layout/fragment_ocjene_bottom_sheet"/>
 </navigation>

@@ -35,9 +35,12 @@
     <string name="login">login</string>
     <string name="choose">Izaberi razred:</string>
     <string name="error">Dogodila se pogreska.</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="predmeti">predmeti</string>
     <string name="ispiti">ispiti</string>
     <string name="ocjene">ocjene</string>
+    <string name="izostanci">izostanci</string>
+    <string name="biljeske">bilješke</string>
+    <string name="ponasanje">ponašanje</string>
 </resources>

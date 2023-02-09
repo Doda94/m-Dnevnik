@@ -8,5 +8,5 @@ data class Ocjena(
     @SerialName("date") val date: Int,
     @SerialName("grade") val grade: String,
     @SerialName("ed_id") val ed_id: String,
-    @SerialName("field") val field: String? = null,
+    @SerialName("field") val field: String = "",
 )

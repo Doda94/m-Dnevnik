@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
+import com.doda.mdnevnik.Ocjena
 import com.doda.mdnevnik.databinding.FragmentOcjeneBottomSheetBinding
 import com.doda.mdnevnik.razredi.Rubrika
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,6 +20,8 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     val rubrike: List<Rubrika> = listOf()
+
+    var ocjene: List<Ocjena> = listOf()
 
     private val args by navArgs<OcjeneBottomSheetFragmentArgs>()
 
@@ -38,8 +42,11 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.loadOcjene(args.id)
 
-        viewModel.ocjeneLiveData.observe(viewLifecycleOwner){
-            it
+        viewModel.ocjeneLiveData.observe(viewLifecycleOwner) {
+            for (rubrika in it) {
+                ocjene += rubrika.ocjene
+            }
+            initOcjeneRecycler()
         }
 
     }
@@ -47,6 +54,15 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initOcjeneRecycler(){
+        val adapter: OcjeneBottomSheetAdapter = OcjeneBottomSheetAdapter(ocjene) {
+
+        }
+        binding.recyclerView.adapter = adapter
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
     }
 
 }

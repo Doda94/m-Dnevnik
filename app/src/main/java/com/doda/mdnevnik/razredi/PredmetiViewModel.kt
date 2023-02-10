@@ -2,14 +2,21 @@ package com.doda.mdnevnik.razredi
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.PrimaryKey
 import com.doda.mdnevnik.OcjeneResponse
 import com.doda.mdnevnik.api.ApiModule
 import com.doda.mdnevnik.biljeske.Biljeska
 import com.doda.mdnevnik.biljeske.BiljeskeResponse
 import com.doda.mdnevnik.db.BiljeskaEntity
 import com.doda.mdnevnik.db.DnevnikDatabase
+import com.doda.mdnevnik.db.IspitiEntity
+import com.doda.mdnevnik.db.IzostanakEntity
 import com.doda.mdnevnik.db.PredmetEntity
 import com.doda.mdnevnik.db.VladanjeEntity
+import com.doda.mdnevnik.ispiti.Ispit
+import com.doda.mdnevnik.ispiti.IspitiResponse
+import com.doda.mdnevnik.izostanci.Izostanak
+import com.doda.mdnevnik.izostanci.IzostanciResponse
 import com.doda.mdnevnik.vladanje.VladanjeResponse
 import java.util.concurrent.Executors
 import retrofit2.Call
@@ -35,11 +42,55 @@ class PredmetiViewModel(
         }
     }
 
-    fun loadVladanje(classId: String){
+    fun loadIzostanke(classId: String) {
+        ApiModule.retrofit.izostanci(classId).enqueue(object : retrofit2.Callback<IzostanciResponse> {
+            override fun onResponse(call: Call<IzostanciResponse>, response: Response<IzostanciResponse>) {
+                var izostanci = response.body()?.data!!
+                for (izostanak in izostanci) {
+                    Executors.newSingleThreadExecutor().execute {
+                        database.dnevnikDAO().insertIzostanci(
+                            IzostanakEntity(
+                                izostanakInfo = izostanak
+                            )
+                        )
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<IzostanciResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun loadIspiti(classId: String) {
+        ApiModule.retrofit.ispiti(classId).enqueue(object : retrofit2.Callback<IspitiResponse> {
+            override fun onResponse(call: Call<IspitiResponse>, response: Response<IspitiResponse>) {
+                var ispiti = response.body()?.ispiti!!
+                for (ispit in ispiti) {
+                    Executors.newSingleThreadExecutor().execute {
+                        database.dnevnikDAO().insertIspiti(
+                            IspitiEntity(
+                                ispitInfo = ispit
+                            )
+                        )
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<IspitiResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun loadVladanje(classId: String) {
         ApiModule.retrofit.vladanje(classId).enqueue(object : retrofit2.Callback<VladanjeResponse> {
             override fun onResponse(call: Call<VladanjeResponse>, response: Response<VladanjeResponse>) {
                 var vladanja = response.body()?.data!!
-                for (vladanje in vladanja){
+                for (vladanje in vladanja) {
                     Executors.newSingleThreadExecutor().execute {
                         database.dnevnikDAO().insertVladanje(
                             VladanjeEntity(
@@ -68,7 +119,7 @@ class PredmetiViewModel(
                             BiljeskaEntity(
                                 title = biljeska.title,
                                 dataText = biljeska.dataText,
-//                                linksData = biljeska.linksData
+                                //                                linksData = biljeska.linksData
                             )
                         )
                     }

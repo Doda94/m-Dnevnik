@@ -3,6 +3,8 @@ package com.doda.mdnevnik.api
 import com.doda.mdnevnik.OcjeneResponse
 import com.doda.mdnevnik.biljeske.BiljeskeResponse
 import com.doda.mdnevnik.data.DataResponse
+import com.doda.mdnevnik.ispiti.IspitiResponse
+import com.doda.mdnevnik.izostanci.IzostanciResponse
 import com.doda.mdnevnik.login.LoginRequest
 import com.doda.mdnevnik.login.LoginResponse
 import com.doda.mdnevnik.razredi.PredmetiResponse
@@ -32,6 +34,12 @@ interface EdnevnikApiService {
 
     @GET("/api/scrape/behavior/{classID}")
     fun vladanje(@Path("classID") classID: String): Call<VladanjeResponse>
+
+    @GET("/api/scrape/tests/{classID}")
+    fun ispiti(@Path("classID") classID: String): Call<IspitiResponse>
+
+    @GET("/api/scrape/absent/{classID}")
+    fun izostanci(@Path("classID") classID: String): Call<IzostanciResponse>
 
 }
 

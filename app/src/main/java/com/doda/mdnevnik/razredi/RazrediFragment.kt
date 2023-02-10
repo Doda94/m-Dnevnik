@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -58,6 +57,7 @@ class RazrediFragment : Fragment() {
 
         ApiModule.initRetrofit(sharedPreferences)
         viewModel.loadPredmete(args.id)
+        viewModel.loadIspiti(args.id)
         initBottomNavBarListener()
 
         viewModel.predmetiLiveData.observe(viewLifecycleOwner) {

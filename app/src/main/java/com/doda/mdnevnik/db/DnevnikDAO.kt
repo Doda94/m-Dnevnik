@@ -36,4 +36,16 @@ interface DnevnikDAO {
 
     @Query("UPDATE predmeti SET ocjene = :ocjene WHERE predmetId IS :predmetId")
     fun updateOcjene(predmetId: String, ocjene: List<Ocjena>?)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertIspiti(ispiti: IspitiEntity)
+
+    @Query("SELECT * FROM ispiti")
+    fun getAllIspiti(): List<IspitiEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertIzostanci(izostanci: IzostanakEntity)
+
+    @Query("SELECT * FROM izostanci")
+    fun getAllIzostanci(): List<IzostanakEntity>
 }

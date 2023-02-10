@@ -4,6 +4,8 @@ import androidx.room.TypeConverter
 import com.doda.mdnevnik.Ocjena
 import com.doda.mdnevnik.OcjeneResponse
 import com.doda.mdnevnik.biljeske.LinksData
+import com.doda.mdnevnik.ispiti.Ispit
+import com.doda.mdnevnik.izostanci.Izostanak
 import com.doda.mdnevnik.razredi.Predmet
 import com.google.gson.Gson
 
@@ -79,6 +81,26 @@ class Converters {
     @TypeConverter
     fun fromStringToOcjeneResponse(ocjeneResponse: String): OcjeneResponse {
         return gson.fromJson(ocjeneResponse, OcjeneResponse::class.java)
+    }
+
+    @TypeConverter
+    fun fromIspitToString(ispit: Ispit): String {
+        return gson.toJson(ispit)
+    }
+
+    @TypeConverter
+    fun fromStringToIspit(ispit: String): Ispit {
+        return gson.fromJson(ispit, Ispit::class.java)
+    }
+
+    @TypeConverter
+    fun fromIzostanakToString(izostanak: Izostanak): String {
+        return gson.toJson(izostanak)
+    }
+
+    @TypeConverter
+    fun fromStringToIzostanak(izostanak: String): Izostanak {
+        return gson.fromJson(izostanak, Izostanak::class.java)
     }
 
 }

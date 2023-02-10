@@ -52,8 +52,8 @@ class BiljeskeFragment : Fragment() {
         _binding = null
     }
 
-    private fun initBiljeskeRecycler(){
-        adapter = BiljeskeAdapter(biljeske){}
+    private fun initBiljeskeRecycler() {
+        adapter = BiljeskeAdapter(biljeske) {}
 
         binding.biljeskeRecyclerView.layoutManager = LinearLayoutManager(activity)
 

@@ -63,18 +63,22 @@ class DataFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    
-    private fun initRazrediRecycler(){
-            adapter = DataAdapter(razredi) { razred ->
-                val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id, razred.name)
-                findNavController().navigate(directions)
-            }
-            binding.razrediRecyclerView.layoutManager = LinearLayoutManager(activity)
 
-            binding.razrediRecyclerView.adapter = adapter
+    private fun initRazrediRecycler() {
+        adapter = DataAdapter(razredi) { razred ->
+            val database = (activity?.application as MdnevnikApplication).database
+            Executors.newSingleThreadExecutor().execute {
+                database.clearAllTables()
+            }
+            val directions = DataFragmentDirections.actionDataFragmentToRazrediFragment(razred.ed_id, razred.name)
+            findNavController().navigate(directions)
+        }
+        binding.razrediRecyclerView.layoutManager = LinearLayoutManager(activity)
+
+        binding.razrediRecyclerView.adapter = adapter
     }
 
-    fun hideProgressIndicator(){
+    fun hideProgressIndicator() {
         binding.progressIndicator.visibility = View.GONE
         binding.appBarLayout.visibility = View.VISIBLE
         binding.nestedScrollView.visibility = View.VISIBLE

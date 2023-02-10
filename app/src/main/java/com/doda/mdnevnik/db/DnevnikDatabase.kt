@@ -10,7 +10,9 @@ import androidx.room.TypeConverters
     entities = [
         PredmetEntity::class,
         BiljeskaEntity::class,
-        VladanjeEntity::class
+        VladanjeEntity::class,
+        IspitiEntity::class,
+        IzostanakEntity::class,
     ],
     version = 1,
 )

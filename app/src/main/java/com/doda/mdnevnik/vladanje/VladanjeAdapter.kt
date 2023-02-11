@@ -29,4 +29,7 @@ class VladanjeAdapter(
             binding.dataTv.text = item.dataText
         }
     }
+
+    override fun getItemId(position: Int) = position.toLong()
+    override fun getItemViewType(position: Int) = position
 }

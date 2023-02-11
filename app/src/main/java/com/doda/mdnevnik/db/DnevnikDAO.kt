@@ -31,7 +31,7 @@ interface DnevnikDAO {
     @Query("SELECT * FROM vladanje")
     fun getAllVladanje(): List<VladanjeEntity>
 
-    @Query ("SELECT * FROM predmeti WHERE predmetId IS :predmetId")
+    @Query("SELECT * FROM predmeti WHERE predmetId IS :predmetId")
     fun getPredmet(predmetId: String): PredmetEntity
 
     @Query("UPDATE predmeti SET ocjene = :ocjene WHERE predmetId IS :predmetId")
@@ -48,4 +48,5 @@ interface DnevnikDAO {
 
     @Query("SELECT * FROM izostanci")
     fun getAllIzostanci(): List<IzostanakEntity>
+
 }

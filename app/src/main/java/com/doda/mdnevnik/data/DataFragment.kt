@@ -57,6 +57,11 @@ class DataFragment : Fragment() {
 
         ApiModule.initRetrofit(sharedPreferences)
         viewModel.loadRazrede()
+
+        binding.extendedFab.setOnClickListener{
+            val directions = DataFragmentDirections.actionDataFragmentToLoginFragment()
+            findNavController().navigate(directions)
+        }
     }
 
     override fun onDestroyView() {

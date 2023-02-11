@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -35,6 +36,8 @@ class BiljeskeFragment : Fragment() {
 
         binding.bottomNavigation.selectedItemId = R.id.biljeske_item
 
+        initBottomNavBarListener()
+
         val viewModel: BiljeskeViewModel by viewModels {
             BiljeskeViewModelFactory((activity?.application as MdnevnikApplication).database)
         }
@@ -58,6 +61,33 @@ class BiljeskeFragment : Fragment() {
         binding.biljeskeRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         binding.biljeskeRecyclerView.adapter = adapter
+    }
+
+    private fun initBottomNavBarListener() {
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ispiti_item -> {
+                    val directions = BiljeskeFragmentDirections.actionBiljeskeFragmentToIspitiFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.izostanci_item -> {
+                    val directions = BiljeskeFragmentDirections.actionBiljeskeFragmentToIzostanciFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.ponasanje_item -> {
+                    val directions = BiljeskeFragmentDirections.actionBiljeskeFragmentToVladanjeFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.predmeti_item -> {
+                    findNavController().popBackStack(R.id.razrediFragment, false)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 }

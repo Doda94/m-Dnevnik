@@ -39,8 +39,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="predmeti">predmeti</string>
     <string name="ispiti">ispiti</string>
-    <string name="ocjene">ocjene</string>
+    <string name="ocjene">Ocjene:</string>
     <string name="izostanci">izostanci</string>
     <string name="biljeske">bilješke</string>
     <string name="ponasanje">ponašanje</string>
+    <string name="Izostanci">Izostanci</string>
+    <string name="logout">LOGOUT</string>
+    <string name="biljeskelist">Bilješke:</string>
 </resources>

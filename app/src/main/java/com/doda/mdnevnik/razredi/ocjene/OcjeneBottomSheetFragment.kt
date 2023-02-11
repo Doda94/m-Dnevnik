@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +20,9 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val binding get() = _binding!!
 
-    val rubrike: List<Rubrika> = listOf()
-
     var ocjene: List<Ocjena> = listOf()
+
+    var biljeske: List<Ocjena> = listOf()
 
     private val args by navArgs<OcjeneBottomSheetFragmentArgs>()
 
@@ -44,9 +45,14 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.ocjeneLiveData.observe(viewLifecycleOwner) {
             for (rubrika in it) {
-                ocjene += rubrika.ocjene
+                if (rubrika.name == "") {
+                    biljeske += rubrika.ocjene
+                } else {
+                    ocjene += rubrika.ocjene
+                }
             }
             initOcjeneRecycler()
+            initBiljeskeRecycler()
         }
 
     }
@@ -56,13 +62,23 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
         _binding = null
     }
 
-    private fun initOcjeneRecycler(){
+    private fun initOcjeneRecycler() {
         val adapter: OcjeneBottomSheetAdapter = OcjeneBottomSheetAdapter(ocjene) {
 
         }
         binding.recyclerView.adapter = adapter
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+    }
+
+    private fun initBiljeskeRecycler() {
+        binding.biljeskeHeaderTv.isVisible = biljeske.isNotEmpty()
+        val Biljeskeadapter: BiljeskeBottomSheetAdapter = BiljeskeBottomSheetAdapter(biljeske) {
+
+        }
+        binding.recyclerViewBiljeske.adapter = Biljeskeadapter
+
+        binding.recyclerViewBiljeske.layoutManager = LinearLayoutManager(activity)
     }
 
 }

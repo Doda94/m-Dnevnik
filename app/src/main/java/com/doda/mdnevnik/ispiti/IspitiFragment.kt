@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -35,6 +36,8 @@ class IspitiFragment : Fragment() {
 
         binding.bottomNavigation.selectedItemId = R.id.ispiti_item
 
+        initBottomNavBarListener()
+
         val viewModel: IspitiViewModel by viewModels {
             IspitiViewModelFactory((activity?.application as MdnevnikApplication).database)
         }
@@ -59,6 +62,33 @@ class IspitiFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initBottomNavBarListener() {
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.izostanci_item -> {
+                    val directions = IspitiFragmentDirections.actionIspitiFragmentToIzostanciFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.biljeske_item -> {
+                    val directions = IspitiFragmentDirections.actionIspitiFragmentToBiljeskeFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.ponasanje_item -> {
+                    val directions = IspitiFragmentDirections.actionIspitiFragmentToVladanjeFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.predmeti_item -> {
+                    findNavController().popBackStack(R.id.razrediFragment, false)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 }

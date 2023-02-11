@@ -8,57 +8,35 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/datum_tv"
+        android:id="@+id/predmet_datum_tv"
         style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:text="29.2.2023."/>
+        tools:text="Hrvatski jezik - 29.2."/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
+
+            <TextView
+                android:id="@+id/biljeska_tv"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                tools:text="Ispit znanja: jezično posuđivanje, onomastika, frazeologija"/>
+
+
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/predmet_tv"
-            style="@style/TextAppearance.Material3.BodyLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hrvatski jezik"/>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="?android:attr/dividerVertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/biljeska_tv"
-            app:layout_constraintStart_toEndOf="@id/predmet_tv"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/biljeska_tv"
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Ispit znanja: jezično posuđivanje, onomastika, frazeologija"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"/>
 
 </LinearLayout>

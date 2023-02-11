@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -32,6 +33,8 @@ class VladanjeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initBottomNavBarListener()
 
         binding.bottomNavigation.selectedItemId = R.id.ponasanje_item
 
@@ -60,6 +63,33 @@ class VladanjeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initBottomNavBarListener(){
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ispiti_item -> {
+                    val directions = VladanjeFragmentDirections.actionVladanjeFragmentToIspitiFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.izostanci_item -> {
+                    val directions = VladanjeFragmentDirections.actionVladanjeFragmentToIzostanciFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.biljeske_item -> {
+                    val directions = VladanjeFragmentDirections.actionVladanjeFragmentToBiljeskeFragment()
+                    findNavController().navigate(directions)
+                    true
+                }
+                R.id.predmeti_item -> {
+                    findNavController().popBackStack(R.id.razrediFragment, false)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 }

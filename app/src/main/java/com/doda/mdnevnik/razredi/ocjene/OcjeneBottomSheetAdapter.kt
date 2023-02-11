@@ -5,11 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.doda.mdnevnik.DatumConverter
 import com.doda.mdnevnik.Ocjena
-import com.doda.mdnevnik.databinding.ViewItemOcjenaHeaderBinding
+import com.doda.mdnevnik.databinding.ViewItemOcjenaBiljeskaBinding
 import com.doda.mdnevnik.databinding.ViewItemOcjenaBinding
-import com.doda.mdnevnik.razredi.Rubrika
-import java.util.Date
-import java.util.concurrent.TimeUnit
+import com.doda.mdnevnik.databinding.ViewItemOcjenaHeaderBinding
 
 class OcjeneBottomSheetAdapter(
     private var ocjene: List<Ocjena>,
@@ -17,13 +15,11 @@ class OcjeneBottomSheetAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder
         if (getItemViewType(position) == 0) {
             (holder as HeaderViewHolder).bind(ocjene[position])
         } else {
             (holder as OcjeneViewHolder).bind(ocjene[position])
         }
-
     }
 
     private inner class HeaderViewHolder(private val binding: ViewItemOcjenaHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -88,4 +84,6 @@ class OcjeneBottomSheetAdapter(
             return 1
         }
     }
+
+    override fun getItemId(position: Int) = position.toLong()
 }

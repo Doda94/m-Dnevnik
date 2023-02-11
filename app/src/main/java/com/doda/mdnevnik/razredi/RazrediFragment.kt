@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
@@ -16,6 +17,7 @@ import com.doda.mdnevnik.databinding.FragmentRazrediBinding
 import com.doda.mdnevnik.db.OcjeneEntity
 import com.doda.mdnevnik.db.PredmetEntity
 import com.doda.mdnevnik.preferences.MyPreferences
+import kotlin.math.roundToInt
 
 class RazrediFragment : Fragment() {
 
@@ -62,6 +64,22 @@ class RazrediFragment : Fragment() {
 
         viewModel.predmetiLiveData.observe(viewLifecycleOwner) {
             predmeti = it
+            predmeti = predmeti.sortedBy { predmet -> predmet.predmet.subject }
+            var prosjek = 0.0
+            var brojOcjena = 0
+            for (predmet in predmeti) {
+                if (predmet.prosjek != null) {
+                    if (predmet.prosjek != 0.0) {
+                        prosjek += predmet.prosjek!!.roundToInt()
+                        brojOcjena++
+                    }
+                }
+            }
+            if (brojOcjena != 0) {
+                prosjek /= brojOcjena
+                var prosjekString = String.format("%.2f", prosjek).replace(".",",")
+                binding.toolbar.title = "Ukupni prosjek: ${prosjekString}"
+            }
             initPredmetiRecycler()
         }
 
@@ -70,9 +88,9 @@ class RazrediFragment : Fragment() {
                 hideProgressIndicator()
                 viewModel.loadBiljeske(args.id)
                 viewModel.loadVladanje(args.id)
+                viewModel.loadIzostanke(args.id)
             }
         }
-
     }
 
     override fun onDestroyView() {
@@ -90,13 +108,13 @@ class RazrediFragment : Fragment() {
         binding.ocjeneRecyclerView.adapter = adapter
     }
 
-
     private fun hideProgressIndicator() {
         binding.progressIndicator.visibility = View.GONE
         binding.appBarLayout.visibility = View.VISIBLE
         binding.nestedScrollView.visibility = View.VISIBLE
         binding.bottomNavigation.visibility = View.VISIBLE
     }
+
     private fun initBottomNavBarListener() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -106,6 +124,8 @@ class RazrediFragment : Fragment() {
                     true
                 }
                 R.id.izostanci_item -> {
+                    val directions = RazrediFragmentDirections.actionRazrediFragmentToIzostanciFragment()
+                    findNavController().navigate(directions)
                     true
                 }
                 R.id.biljeske_item -> {

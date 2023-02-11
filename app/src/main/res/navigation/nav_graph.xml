@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_dataFragment_to_razrediFragment"
             app:destination="@id/razrediFragment"/>
+        <action android:id="@+id/action_dataFragment_to_loginFragment" app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" app:popUpTo="@id/loginFragment" app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/razrediFragment"
@@ -33,6 +36,7 @@
         <argument
             android:name="razred"
             app:argType="string"/>
+        <action android:id="@+id/action_razrediFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"/>
         <action android:id="@+id/action_razrediFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
         <action android:id="@+id/action_razrediFragment_to_ocjeneBottomSheetFragment" app:destination="@id/ocjeneBottomSheetFragment"/>
         <action android:id="@+id/action_razrediFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"/>
@@ -41,7 +45,13 @@
     <fragment android:id="@+id/ispitiFragment"
         android:name="com.doda.mdnevnik.ispiti.IspitiFragment"
         android:label="fragment_ispiti"
-        tools:layout="@layout/fragment_ispiti"/>
+        tools:layout="@layout/fragment_ispiti">
+        <action android:id="@+id/action_ispitiFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment"/>
+        <action android:id="@+id/action_ispitiFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"/>
+        <action android:id="@+id/action_ispitiFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"/>
+        <action android:id="@+id/action_ispitiFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"/>
+    </fragment>
 
     <dialog
         android:id="@+id/ocjeneBottomSheetFragment"
@@ -54,9 +64,29 @@
         android:id="@+id/biljeskeFragment"
         android:name="com.doda.mdnevnik.biljeske.BiljeskeFragment"
         android:label="fragment_biljeske"
-        tools:layout="@layout/fragment_biljeske"/>
+        tools:layout="@layout/fragment_biljeske">
+        <action android:id="@+id/action_biljeskeFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment"/>
+        <action android:id="@+id/action_biljeskeFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"/>
+        <action android:id="@+id/action_biljeskeFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
+        <action android:id="@+id/action_biljeskeFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/vladanjeFragment"
         android:name="com.doda.mdnevnik.vladanje.VladanjeFragment"
-        android:label="VladanjeFragment"/>
+        android:label="VladanjeFragment">
+        <action android:id="@+id/action_vladanjeFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"/>
+        <action android:id="@+id/action_vladanjeFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"/>
+        <action android:id="@+id/action_vladanjeFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment"/>
+        <action android:id="@+id/action_vladanjeFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
+    </fragment>
+    <fragment android:id="@+id/izostanciFragment" android:name="com.doda.mdnevnik.izostanci.IzostanciFragment"
+        android:label="fragment_izostanci" tools:layout="@layout/fragment_izostanci">
+        <action android:id="@+id/action_izostanciFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"/>
+        <action android:id="@+id/action_izostanciFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"/>
+        <action android:id="@+id/action_izostanciFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"/>
+        <action android:id="@+id/action_izostanciFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment"/>
+    </fragment>
 </navigation>

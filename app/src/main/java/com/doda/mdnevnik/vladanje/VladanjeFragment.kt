@@ -34,9 +34,9 @@ class VladanjeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initBottomNavBarListener()
-
         binding.bottomNavigation.selectedItemId = R.id.ponasanje_item
+
+        initBottomNavBarListener()
 
         val viewModel: VladanjeViewModel by viewModels{
             VladanjeViewModelFactory((activity?.application as MdnevnikApplication).database)

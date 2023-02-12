@@ -38,9 +38,11 @@ class OcjeneBottomSheetViewModel(
                     }
                 }
                 ocjeneRubrika.forEach() { (key, value) ->
-                    rubrike = rubrike.plus(Rubrika(key, value))
+                    val listaOcjena = value.sortedBy { it.date }
+                    rubrike = rubrike.plus(Rubrika(key, listaOcjena))
                 }
             }
+            rubrike = rubrike.sortedBy { it.name }
             _ocjeneLiveData.postValue(rubrike)
         }
     }

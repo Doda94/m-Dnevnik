@@ -28,6 +28,7 @@ class OcjeneBottomSheetAdapter(
             binding.ocjenaLayout.ocjenaTv.text = ocjena.grade
             binding.ocjenaLayout.datumTv.text = DatumConverter.getDatum(ocjena.date.toLong())
             binding.ocjenaLayout.ocjenaSlovimaTv.text = getOpisOcjene(ocjena.grade)
+            binding.ocjenaLayout.razredCard.setOnClickListener { onItemClickCallback(ocjena) }
         }
     }
 
@@ -36,6 +37,7 @@ class OcjeneBottomSheetAdapter(
             binding.datumTv.text = DatumConverter.getDatum(item.date.toLong())
             binding.ocjenaTv.text = item.grade
             binding.ocjenaSlovimaTv.text = getOpisOcjene(item.grade)
+            binding.razredCard.setOnClickListener { onItemClickCallback(item) }
         }
     }
 

@@ -8,11 +8,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.doda.mdnevnik.DatumConverter
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.Ocjena
 import com.doda.mdnevnik.databinding.FragmentOcjeneBottomSheetBinding
 import com.doda.mdnevnik.razredi.Rubrika
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -63,8 +65,16 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initOcjeneRecycler() {
-        val adapter: OcjeneBottomSheetAdapter = OcjeneBottomSheetAdapter(ocjene) {
-
+        val adapter: OcjeneBottomSheetAdapter = OcjeneBottomSheetAdapter(ocjene) {ocjena ->
+            var title: String = getOpisOcjene(ocjena.grade)
+            title+= " - " + ocjena.date
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getOpisOcjene(ocjena.grade) + " - " + DatumConverter.getDugiDatum(ocjena.date.toLong()))
+                .setMessage(ocjena.note)
+                .setNeutralButton("Zatvori") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
         binding.recyclerView.adapter = adapter
 
@@ -74,11 +84,32 @@ class OcjeneBottomSheetFragment : BottomSheetDialogFragment() {
     private fun initBiljeskeRecycler() {
         binding.biljeskeHeaderTv.isVisible = biljeske.isNotEmpty()
         val Biljeskeadapter: BiljeskeBottomSheetAdapter = BiljeskeBottomSheetAdapter(biljeske) {
-
+            it
         }
         binding.recyclerViewBiljeske.adapter = Biljeskeadapter
 
         binding.recyclerViewBiljeske.layoutManager = LinearLayoutManager(activity)
+    }
+
+    private fun getOpisOcjene(ocjena: String): String {
+        when (ocjena) {
+            "1" -> {
+                return "nedovoljan (1)"
+            }
+            "2" -> {
+                return "dovoljan (2)"
+            }
+            "3" -> {
+                return "dobar (3)"
+            }
+            "4" -> {
+                return "vrlo dobar (4)"
+            }
+            "5" -> {
+                return "odličan (5)"
+            }
+        }
+        return ""
     }
 
 }

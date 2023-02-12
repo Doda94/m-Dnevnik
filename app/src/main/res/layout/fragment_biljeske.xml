@@ -17,7 +17,10 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/Biljeske"
+            app:titleCentered="true"
+            android:fitsSystemWindows="true"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -52,4 +52,13 @@
         app:menu="@menu/bottom_navigation_menu"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_help_24"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,14 @@ class DatumConverter {
             val formatter = DateTimeFormatter.ofPattern("dd.MM.")
             return localDate.format(formatter)
         }
+
+        fun getDugiDatum(datum: Long): String {
+            val vrijeme = TimeUnit.SECONDS.toMillis(datum)
+            val date = Date(vrijeme)
+            val localDate: LocalDate = date.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate()
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.")
+            return localDate.format(formatter)
+        }
     }
 
 }

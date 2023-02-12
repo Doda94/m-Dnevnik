@@ -40,11 +40,14 @@ class RazrediFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRazrediBinding.inflate(inflater, container, false)
+        binding.bottomNavigation.selectedItemId = R.id.predmeti_item
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.bottomNavigation.selectedItemId = R.id.predmeti_item
 
         predmeti = emptyList()
         ocjene = emptyList()
@@ -98,6 +101,11 @@ class RazrediFragment : Fragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavigation.selectedItemId = R.id.predmeti_item
+    }
+
     private fun initPredmetiRecycler() {
         adapter = PredmetiAdapter(predmeti) { predmet ->
             val directions = RazrediFragmentDirections.actionRazrediFragmentToOcjeneBottomSheetFragment(predmet.predmetId)
@@ -116,6 +124,7 @@ class RazrediFragment : Fragment() {
     }
 
     private fun initBottomNavBarListener() {
+        binding.bottomNavigation.selectedItemId = R.id.predmeti_item
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ispiti_item -> {

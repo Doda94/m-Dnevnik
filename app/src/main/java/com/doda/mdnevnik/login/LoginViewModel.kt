@@ -11,9 +11,9 @@ import retrofit2.Response
 
 class LoginViewModel : ViewModel() {
 
-    private val loginResultLiveData: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
+    private val loginResultLiveData: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
 
-    fun getLoginResultLiveData(): LiveData<Boolean> {
+    fun getLoginResultLiveData(): LiveData<Int> {
         return loginResultLiveData
     }
 
@@ -21,14 +21,16 @@ class LoginViewModel : ViewModel() {
         val request = LoginRequest(email, password)
         ApiModule.retrofit.login(request).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                loginResultLiveData.value = response.isSuccessful
-                val body = response.body()
-                if (body != null && response.isSuccessful)
-                    sharedPreferences.putToken(body.token)
+                if (response.body()!!.isSuccessful) {
+                    loginResultLiveData.value = 1
+                    sharedPreferences.putToken(response.body()!!.token)
+                } else {
+                    loginResultLiveData.value = 0
+                }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                loginResultLiveData.value = false
+                loginResultLiveData.value = 2
             }
 
         })

@@ -32,7 +32,7 @@
     </string>
     <string name="email">e-pošta</string>
     <string name="password">lozinka</string>
-    <string name="login">login</string>
+    <string name="login">prijava</string>
     <string name="choose">Izaberi razred:</string>
     <string name="error">Dogodila se pogreska.</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -44,6 +44,16 @@
     <string name="biljeske">bilješke</string>
     <string name="ponasanje">ponašanje</string>
     <string name="Izostanci">Izostanci</string>
-    <string name="logout">LOGOUT</string>
+    <string name="logout">ODJAVA</string>
     <string name="biljeskelist">Bilješke:</string>
+    <string name="ceka_odluku"> - čeka odluku</string>
+    <string name="opravdano"> - opravdano</string>
+    <string name="neopravdano"> - neopravdano</string>
+    <string name="ukupno"> - ukupno</string>
+    <string name="ostalo"> - ostalo</string>
+    <string name="legenda">LEGENDA</string>
+    <string name="login_failed_server">Greška na serveru! Provjerite internetsku vezu.</string>
+    <string name="login_failed_creds">Pogrešna adresa e-pošte ili lozinka!</string>
+    <string name="Ponasanje">Ponašanje</string>
+    <string name="Biljeske">Bilješke</string>
 </resources>

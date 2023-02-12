@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.doda.mdnevnik.MdnevnikApplication
 import com.doda.mdnevnik.R
 import com.doda.mdnevnik.databinding.FragmentIzostanciBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class IzostanciFragment : Fragment() {
 
@@ -31,6 +32,8 @@ class IzostanciFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.bottomNavigation.selectedItemId = R.id.izostanci_item
+
         initBottomNavBarListener()
 
         val viewModel: IzostanciViewModel by viewModels {
@@ -47,9 +50,16 @@ class IzostanciFragment : Fragment() {
                     izostanci += _izostanak.izostanakInfo
                 }
             }
-
             initIzostanciRecycler()
         }
+
+        binding.floatingActionButton.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.legenda))
+                .setView(R.layout.dialog_izostanci)
+                .show()
+        }
+
     }
 
     override fun onDestroyView() {

@@ -82,12 +82,23 @@ class LoginFragment : Fragment() {
 
     private fun initLoginLiveDataObserver() {
         viewModel.getLoginResultLiveData().observe(viewLifecycleOwner) { isSuccessful ->
-            if (isSuccessful) {
+            if (isSuccessful == 1) {
                 val directions = LoginFragmentDirections.actionLoginFragmentToDataFragment()
                 findNavController().navigate(directions)
             } else {
-                // TODO: add different snackbars for wrong credentials and for server errors
-                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG).show()
+                if (isSuccessful == 2) {
+                    Snackbar.make(
+                        binding.root,
+                        R.string.login_failed_server,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        R.string.login_failed_creds,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

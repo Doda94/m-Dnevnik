@@ -29,7 +29,7 @@ class PredmetiAdapter(
             binding.predmetTitle.text = item.predmet.subject
             binding.predmetTeacher.text = item.predmet.teachersName
             if (item.prosjek == null)
-                binding.predmetAverage.text = "0,00"
+                binding.predmetAverage.text = "-"
             else
                 binding.predmetAverage.text = String.format("%.2f", item.prosjek).replace(".",",")
             binding.predmetCard.setOnClickListener { onItemClickCallback(item) }

@@ -16,7 +16,7 @@ class IspitiViewModel(
 
     fun loadIspiti() {
         Executors.newSingleThreadExecutor().execute {
-            _ispitiLiveData.postValue(database.dnevnikDAO().getAllIspiti())
+            _ispitiLiveData.postValue(database.dnevnikDAO().getAllIspiti().sortedBy { it.ispitInfo.datum })
         }
     }
 }

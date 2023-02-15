@@ -39,6 +39,8 @@
                     android:maxLines="1"
                     android:maxLength="20"
                     android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:scrollHorizontally="true"
                     android:marqueeRepeatLimit="marquee_forever"
                     tools:text="Hrvatski jezik"
                     />

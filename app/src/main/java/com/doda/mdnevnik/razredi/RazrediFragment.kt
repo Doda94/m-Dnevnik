@@ -68,22 +68,9 @@ class RazrediFragment : Fragment() {
         viewModel.predmetiLiveData.observe(viewLifecycleOwner) {
             predmeti = it
             predmeti = predmeti.sortedBy { predmet -> predmet.predmet.subject }
-            var prosjek = 0.0
-            var brojOcjena = 0
-            for (predmet in predmeti) {
-                if (predmet.prosjek != null) {
-                    if (predmet.prosjek != 0.0) {
-                        prosjek += predmet.prosjek!!.roundToInt()
-                        brojOcjena++
-                    }
-                }
-            }
-            if (brojOcjena != 0) {
-                prosjek /= brojOcjena
-                var prosjekString = String.format("%.2f", prosjek).replace(".",",")
-                binding.toolbar.title = "Ukupni prosjek: ${prosjekString}"
-            }
+
             initPredmetiRecycler()
+            setProsjek()
         }
 
         viewModel.numberOfProsjekLiveData.observe(viewLifecycleOwner) {
@@ -104,6 +91,22 @@ class RazrediFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.bottomNavigation.selectedItemId = R.id.predmeti_item
+    }
+
+    private fun setProsjek() {
+        var zbroj = 0
+        var broj = 0
+        for (predmet in predmeti) {
+            if (predmet.prosjek == null || predmet.prosjek == 0.0) {
+                continue
+            }
+            zbroj += predmet.prosjek.roundToInt()
+            broj++
+        }
+        if (broj > 0) {
+            val prosjekString = String.format("%.2f", zbroj.toDouble() / broj.toDouble()).replace(".", ",")
+            binding.toolbar.title = "Ukupni prosjek: ${prosjekString}"
+        }
     }
 
     private fun initPredmetiRecycler() {

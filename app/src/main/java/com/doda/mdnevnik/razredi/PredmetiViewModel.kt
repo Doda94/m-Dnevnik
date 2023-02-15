@@ -19,6 +19,7 @@ import com.doda.mdnevnik.izostanci.Izostanak
 import com.doda.mdnevnik.izostanci.IzostanciResponse
 import com.doda.mdnevnik.vladanje.VladanjeResponse
 import java.util.concurrent.Executors
+import kotlin.math.roundToInt
 import retrofit2.Call
 import retrofit2.Response
 
@@ -35,6 +36,10 @@ class PredmetiViewModel(
     val numberOfProsjekLiveData: MutableLiveData<Int> = _numberOfProsjekLiveData
 
     private var predmeti: List<Predmet> = listOf()
+
+    private var _prosjekLiveData = MutableLiveData<Int>()
+
+    val prosjekLiveData: MutableLiveData<Int> = _prosjekLiveData
 
     fun clearDB() {
         Executors.newSingleThreadExecutor().execute {

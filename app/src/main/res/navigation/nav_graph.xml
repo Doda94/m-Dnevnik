@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.doda.mdnevnik.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_loginFragment_to_dataFragment"
+            app:destination="@id/dataFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/dataFragment"
+        android:name="com.doda.mdnevnik.data.DataFragment"
+        android:label="fragment_data"
+        tools:layout="@layout/fragment_data">
+        <action
+            android:id="@+id/action_dataFragment_to_razrediFragment"
+            app:destination="@id/razrediFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_dataFragment_to_loginFragment" app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" app:popUpTo="@id/loginFragment" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/razrediFragment"
+        android:name="com.doda.mdnevnik.razredi.RazrediFragment"
+        android:label="fragment_razredi"
+        tools:layout="@layout/fragment_razredi">
+        <argument
+            android:name="id"
+            app:argType="string"/>
+        <argument
+            android:name="razred"
+            app:argType="string"/>
+        <action android:id="@+id/action_razrediFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"
+            app:enterAnim="@android:anim/fade_in" app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_razrediFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_razrediFragment_to_ocjeneBottomSheetFragment" app:destination="@id/ocjeneBottomSheetFragment"/>
+        <action android:id="@+id/action_razrediFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_razrediFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/ispitiFragment"
+        android:name="com.doda.mdnevnik.ispiti.IspitiFragment"
+        android:label="fragment_ispiti"
+        tools:layout="@layout/fragment_ispiti">
+        <action android:id="@+id/action_ispitiFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_ispitiFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_ispitiFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_ispitiFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+
+    <dialog
+        android:id="@+id/ocjeneBottomSheetFragment"
+        android:name="com.doda.mdnevnik.razredi.ocjene.OcjeneBottomSheetFragment"
+        android:label="fragment_ocjene_bottom_sheet"
+        tools:layout="@layout/fragment_ocjene_bottom_sheet">
+        <argument android:name="id" app:argType="string"/>
+    </dialog>
+    <fragment
+        android:id="@+id/biljeskeFragment"
+        android:name="com.doda.mdnevnik.biljeske.BiljeskeFragment"
+        android:label="fragment_biljeske"
+        tools:layout="@layout/fragment_biljeske">
+        <action android:id="@+id/action_biljeskeFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_biljeskeFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_biljeskeFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_biljeskeFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vladanjeFragment"
+        android:name="com.doda.mdnevnik.vladanje.VladanjeFragment"
+        android:label="VladanjeFragment">
+        <action android:id="@+id/action_vladanjeFragment_to_izostanciFragment" app:destination="@id/izostanciFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_vladanjeFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_vladanjeFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_vladanjeFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/izostanciFragment" android:name="com.doda.mdnevnik.izostanci.IzostanciFragment"
+        android:label="fragment_izostanci" tools:layout="@layout/fragment_izostanci">
+        <action android:id="@+id/action_izostanciFragment_to_vladanjeFragment" app:destination="@id/vladanjeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_izostanciFragment_to_biljeskeFragment" app:destination="@id/biljeskeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_izostanciFragment_to_ispitiFragment" app:destination="@id/ispitiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_izostanciFragment_to_razrediFragment" app:destination="@id/razrediFragment"
+            app:popUpTo="@id/razrediFragment" app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+</navigation>

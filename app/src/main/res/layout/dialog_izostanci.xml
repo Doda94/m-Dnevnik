@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/guide_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:theme="@style/ThemeOverlay.Material3.Dialog">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp">
+
+        <include
+            layout="@layout/view_izostanak_guide_item_green"/>
+
+        <include
+            layout="@layout/view_izostanak_guide_item_red"/>
+
+        <include
+            layout="@layout/view_izostanak_guide_item_black"/>
+
+        <include
+            layout="@layout/view_izostanak_guide_item_gray"/>
+
+        <include
+            layout="@layout/view_izostanak_guide_item_yellow"/>
+
+    </LinearLayout>
+
+</FrameLayout>

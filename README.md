@@ -1,7 +1,7 @@
 # m-Dnevnik
 
 Native Android e-dnevnik client
-Aplikacija koristi https://eduo-ocjene-docs.vercel.app/ api koji vise ne radi
+- Aplikacija koristi https://eduo-ocjene-docs.vercel.app/ api koji vise ne radi
 
 Bugovi:
 - Stavke biljeske, ispiti, izostanci nisu do kraja napravljene i trebaju daljnju doradu

@@ -1,6 +1,6 @@
 # m-Dnevnik
 
-Native Android e-dnevnik client, projekt za natjecanje [Razvoju softvera 2023](https://informatika.azoo.hr/kategorija/3/Razvoj-softvera) 
+Native Android e-dnevnik client, projekt za natjecanje [Razvoj softvera 2023](https://informatika.azoo.hr/kategorija/3/Razvoj-softvera) 
 - Aplikacija koristi https://eduo-ocjene-docs.vercel.app/ api koji vise ne radi te treba kontaktirati [autora](https://github.com/JakovGlavac/eduo-ocjene-docs)
 
 Bugovi:
